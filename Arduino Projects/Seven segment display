@@ -1,0 +1,158 @@
+# Seven segment display
+
+Seven segment displays are of two types: common anode and common
+cathode. The Internal structure of both types is nearly the same. The difference
+is the polarity of the LEDs and common terminal. In a common cathode sevensegment display (the one we used in the experiments), all seven LEDs plus a
+dot LED have the cathodes connected to pins 3 and pin 8. To use this display, we need to
+connect GROUND to pin 3 and pin 8 and, connect +5V to the other pins to make the individual
+segments light up.
+
+The common anode display is the exact opposite. In a common-anode display, the positive terminal of all
+the eight LEDs are connected together and then connected to pin 3 and pin 8. To turn on an individual
+segment, you ground one of the pins. The following diagram shows the internal structure of the commonanode seven-segment display.
+---------------------------------------------------------------------------------------------------------
+Functions Used from Arduino Library:
+
+1. digitalWrite(pin_number,state):
+Action: puts a pin on high or low as state of the pin.
+Return Type: void
+2. delay(seconds):
+Action: pauses the execution of the program for specified time
+Return Type: void
+3. pinMode(pinNumber,state):
+Action: set a pin to output or input mode
+Return Type: void
+4. Serial.println(text_String):
+Action: print the text string on next line of serial console
+Return Type: void
+5. Serial.print(text_String):
+Action: print the text string on serial console
+Return Type: void
+---------------------------------------------------------------------------------------------------------
+General purpose function to get output from sensor:
+
+void displayNum(int number)
+{
+ switch(number)
+ {
+ case 9:
+ digitalWrite(A,HIGH);
+ digitalWrite(B,HIGH);
+ digitalWrite(C,HIGH);
+ digitalWrite(D,HIGH);
+ digitalWrite(E,LOW);
+ digitalWrite(F,HIGH);
+ digitalWrite(G,HIGH);
+ break;
+ case 8:
+ digitalWrite(A,HIGH);
+ digitalWrite(B,HIGH);
+ digitalWrite(C,HIGH);
+ digitalWrite(D,HIGH);
+ digitalWrite(E,HIGH);
+ digitalWrite(F,HIGH);
+ digitalWrite(G,HIGH);
+ break;
+ case 7:
+ digitalWrite(A,HIGH);
+ digitalWrite(B,HIGH);
+ digitalWrite(C,HIGH);
+
+ digitalWrite(D,LOW);
+ digitalWrite(E,LOW);
+ digitalWrite(F,LOW);
+ digitalWrite(G,LOW);
+ break;
+ case 6:
+ digitalWrite(A,HIGH);
+ digitalWrite(B,LOW);
+ digitalWrite(C,HIGH);
+ digitalWrite(D,HIGH);
+ digitalWrite(E,HIGH);
+ digitalWrite(F,HIGH);
+ digitalWrite(G,HIGH);
+ break;
+ case 5:
+ digitalWrite(A,HIGH);
+ digitalWrite(B,LOW);
+ digitalWrite(C,HIGH);
+ digitalWrite(D,HIGH);
+ digitalWrite(E,LOW);
+ digitalWrite(F,HIGH);
+ digitalWrite(G,HIGH);
+ break;
+ case 4:
+ digitalWrite(A,LOW);
+ digitalWrite(B,HIGH);
+ digitalWrite(C,HIGH);
+ digitalWrite(D,LOW);
+ digitalWrite(E,LOW);
+ digitalWrite(F,HIGH);
+ digitalWrite(G,HIGH);
+ break;
+ case 3:
+ digitalWrite(A,HIGH);
+ digitalWrite(B,HIGH);
+ digitalWrite(C,HIGH);
+ digitalWrite(D,HIGH);
+ digitalWrite(E,LOW);
+ digitalWrite(F,LOW);
+ digitalWrite(G,HIGH);
+ break;
+ case 2:
+ digitalWrite(A,HIGH);
+ digitalWrite(B,HIGH);
+ digitalWrite(C,LOW);
+ digitalWrite(D,HIGH);
+ digitalWrite(E,HIGH);
+ digitalWrite(F,LOW);
+ digitalWrite(G,HIGH);
+
+ break;
+ case 1:
+ digitalWrite(A,LOW);
+ digitalWrite(B,HIGH);
+ digitalWrite(C,HIGH);
+ digitalWrite(D,LOW);
+ digitalWrite(E,LOW);
+ digitalWrite(F,LOW);
+ digitalWrite(G,LOW);
+ break;
+ case 0:
+ digitalWrite(A,HIGH);
+ digitalWrite(B,HIGH);
+ digitalWrite(C,HIGH);
+ digitalWrite(D,HIGH);
+ digitalWrite(E,HIGH);
+ digitalWrite(F,HIGH);
+ digitalWrite(G,LOW);
+ break;
+ }
+}
+----------------------------------------------------------------------------------------------------
+Arduino Program:
+
+int A=2;
+int B=3;
+int C=4;
+int D=5;
+int E=6;
+int F=7;
+int G=8;
+int i=0;
+void setup() {
+ pinMode(A,OUTPUT);
+ pinMode(B,OUTPUT);
+ pinMode(C,OUTPUT);
+ pinMode(D,OUTPUT);
+ pinMode(E,OUTPUT);
+ pinMode(F,OUTPUT);
+ pinMode(G,OUTPUT);
+}
+void loop() {
+ displayNum(i);
+ i++;
+ delay(1000);
+ if(i>=10)
+ i =0;
+}
