@@ -1,0 +1,37 @@
+Buzzer 
+
+A buzzer or beeper is a signalling device, usually electronic, typically used in automobiles, household
+appliances such as a microwave oven, or game shows. It most commonly consists of a number of switches
+or sensors connected to a control unit that determines if and which button was pushed or a present time has
+lapsed, and usually illuminates a light on the appropriate button or control panel, and sounds a warning in
+the form of a continuous or intermittent buzzing or beeping sound.
+
+------------------------------------------------------------------------------------------------------------------
+
+Functions Used from Arduino Library:
+1. pinMode(pinNumber, STATE): where STATE is HIGH or LOW
+Action: set the pin behaviour as input or output
+Return Type: void
+2. delay (number of milliseconds)
+Action: stops the execution of program for some milliseconds
+Return Type: void
+3. tone (pinNumber, frequency_in_Hz)
+Action: sends a particular frequency signal on a pin
+Return Type: void
+4. noTone (pinNumber)
+Action: stops the signal
+Return Type: void
+
+-------------------------------------------------------------------------------------------------------------------
+Arduino Program
+
+const int buzzer = 9; //buzzer to arduino pin 9
+void setup(){
+ pinMode(buzzer, OUTPUT); // Set buzzer - pin 9 as an output
+}
+void loop(){
+ tone(buzzer, 1000); // Send 1KHz sound signal...
+ delay(1000); // ...for 1 sec
+ noTone(buzzer); // Stop sound...
+ delay(1000); // ...for 1sec
+}
