@@ -1,0 +1,49 @@
+An LDR is a component that has a (variable) resistance that changes with the light intensity that falls upon it. This
+allows them to be used in light sensing circuits.
+There are many applications for Light Dependent Resistors. These include:
+Lighting switch
+The most obvious application for an LDR is to automatically turn on a light at a certain light level. An
+example of this could be a street light or a garden light.
+Camera shutter control
+LDRs can be used to control the shutter speed on a camera. The LDR would be used to measure the light
+intensity which then adjusts the camera shutter speed to the appropriate level.
+
+---------------------------------------------------------------------------------------------------------------------------
+
+Functions Used from Arduino Library:
+1. pinMode(pin,io_type)
+Action: initiate a pin as output or input
+2. Serial.begin(baudrate)
+Action: Used to initialize serial data connection
+3. analogRead (analog_pin_number)
+Description: returns a value from 0 to 1023 where 0 is 0V and 1023 represents 5V
+4. digitalWrite(pin_mode,state)
+Description: sets a pin value as HIGH or LOW
+
+----------------------------------------------------------------------------------------------------------------------------
+
+Arduino Program
+
+int value=0;
+void setup()
+{
+ Serial.begin(9600);
+ pinMode(11, OUTPUT);
+ pinMode(A0, INPUT);
+}
+void loop()
+{
+ value= analogRead(A0);
+ if(value<10)
+ {
+ digitalWrite(11, HIGH);
+ Serial.println("Light ON");
+ Serial.println(value);
+ }
+ else
+ {
+ digitalWrite(11, LOW);
+ Serial.println("Light OFF");
+ Serial.println(value);
+ }
+}
