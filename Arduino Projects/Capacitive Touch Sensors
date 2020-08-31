@@ -1,0 +1,35 @@
+The Capacitive touch sensors are very popular since they are more robust, durable and user friendly.
+Moreover, it is also cost-effective when compared resistive touch sensors. In Capacitive touch sensor there
+are the two parallel plates which form a capacitor with some capacitance value. In the application of a sensor
+the capacitance is measured continuously with the help of capacitance measurement circuit.
+As we touch the sensor through our finger, our finger acts like a conductive object and hence produces a
+capacitance value.
+There will be uncertain increase in the capacitance if any conductive object such as our finger touches the
+plate. The capacitance measuring circuit will detect the change in the capacitance and will convert it into a
+signal.
+---------------------------------------------------------------------------------------------------------------------
+
+Functions Used from Arduino Library:
+
+digitalRead(pin_number):
+Action: reads state of a pin
+
+---------------------------------------------------------------------------------------------------------------------
+
+Arduino Program
+
+#define touchpin 4 // sets the capactitive touch sensor @pin 4
+int ledPin = 2; // sets the LED @pin 2
+void setup() {
+ pinMode(touchpin, INPUT); //sets the touch sensor as input
+ pinMode(ledPin, OUTPUT); //sets the led as output
+}
+void loop() {
+ if ((digitalRead(touchpin)) == HIGH){ //if sensor is HIGH
+ digitalWrite(ledPin, HIGH); //LED will turn ON
+ }
+ else{ //otherwise
+ digitalWrite(ledPin,LOW); //LED is turned OFF
+ }
+ delay(300); //delay of 300milliseconds
+}
