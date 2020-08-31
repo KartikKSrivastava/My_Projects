@@ -1,0 +1,35 @@
+This module allows you to detect when sound has exceeded a set point you select. Sound is detected via a
+microphone and fed into an LM393 op amp.
+The sound level set point is adjusted via an on-board potentiometer. When the sound level exceeds the set
+point, an LED on the module is illuminated and the output is sent low.
+
+-------------------------------------------------------------------------------------------------------------
+Functions Used from Arduino Library:
+
+digitalRead(pin_number):
+Action: reads state of a pin
+
+-------------------------------------------------------------------------------------------------------------
+
+Arduino Program
+
+int soundSensor=2;
+int LED=4;
+boolean LEDStatus=false;
+void setup() {
+pinMode(soundSensor,INPUT);
+pinMode(LED,OUTPUT);
+}
+void loop() {
+ int SensorData=digitalRead(soundSensor);
+ if(SensorData==1){
+ if(LEDStatus==false){
+ LEDStatus=true;
+ digitalWrite(LED,HIGH);
+ }
+ else{
+ LEDStatus=false;
+ digitalWrite(LED,LOW);
+ }
+ }
+}
