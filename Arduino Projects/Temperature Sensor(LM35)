@@ -1,0 +1,54 @@
+The LM35 series are precision integrated-circuit temperature devices with an output voltage linearlyproportional to the Centigrade temperature.
+The LM35 device has an advantage over linear temperature
+sensors calibrated in Kelvin, as the user is not required to subtract a large constant voltage from the output
+to obtain convenient Centigrade scaling. The LM35 device does not require any external calibration or
+trimming to provide typical accuracies of ±¼°C at room temperature and ±¾°C over a full −55°C to 150°C
+temperature range. Lower cost is assured by trimming and calibration at the wafer level. The low-output
+impedance, linear output, and precise inherent calibration of the LM35 device makes interfacing to readout or
+control circuitryespecially easy. The device is used with single power supplies, or with plus and minus supplies. As
+the LM35 device draws only 60 µA from the supply, it has very low self-heating of less than 0.1°Cin still
+air. The LM35 device is rated to operate over a −55°C to 150°C temperature range, whilethe LM35C device is
+rated for a −40°C to 110°C range (−10° with improved accuracy). The LM35-series devices are available
+packaged in hermetic TO transistor packages, while the LM35C, LM35CA, and LM35D devices are available in the
+plastic TO-92 transistor package. The LM35D device is available in an 8-lead surface-mount small-outline package
+and a plastic TO-220 package.
+Features:
+Calibrated Directly in Celsius (Centigrade)
+Linear + 10-mV/°C Scale Factor
+0.5°C Ensured Accuracy (at 25°C)
+Rated for Full −55°C to 150°C Range
+Suitable for Remote Applications
+Low-Cost Due to Wafer-Level Trimming
+Operates From 4 V to 30 V
+Less Than 60-µA Current Drain
+Low Self-Heating, 0.08°C in Still Air
+Non-Linearity Only ±¼°C Typical
+Low-Impedance Output,0.1 Ω for 1-mA Load
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Functions Used from Arduino Library:
+
+1. pinMode(pin,io_type)
+Action: initiate a pin as output or input
+2. Serial.begin(baudrate)
+Action: Used to initialize serial data connection
+3. analogRead (analog_pin_number)
+Description: returns a value from 0 to 1023 where 0 is 0V and 1023 represents 5V
+4. digitalWrite(pin_mode,state)
+Description: sets a pin value as HIGH or LOW
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Arduino Program
+
+int lm=A2;
+void setup() {
+ Serial.begin(9600);
+ pinMode(lm,INPUT);
+}
+void loop() {
+ double a=analogRead(lm);
+ double temp=5*0.0009765625*a*100;
+ Serial.println(temp);
+}
