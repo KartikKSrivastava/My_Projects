@@ -1,0 +1,51 @@
+A relay is classified into many types, a standard and generally used relay is
+made up of electromagnets which in general used as a switch. Dictionary says that relay means the act of
+passing something from one thing to another, the same meaning can be applied to this device because the
+signal received from one side of the device controls the switching operation on the other side. So relay is
+a switch which controls (open and close) circuits electromechanically. The main operation of this device
+is to make or break contact with the help of a signal without any human involvement in order to switch it
+ON or OFF. It is mainly used to control a high powered circuit using a low power signal. Generally a DC
+signal is used to control circuit which is driven by high voltage like controlling AC home appliances with
+DC signals from microcontrollers.
+
+---------------------------------------------------------------------------------------------------------------------
+
+Functions Used from Arduino Library:
+
+1. digitalWrite(pin_number,state):
+Action: puts a pin on high or low as state of the pin.
+Return Type: void
+2. delay (milliseconds):
+Action: pauses the execution of the program for specified time
+Return Type: void
+3. Serial.begin(baudRate):
+Action: initiate the serial connection
+Return Type: void
+4. Serial.println(text_String):
+Action: print the text string on next line of serial console
+Return Type: void
+5. Serial.print(text_String):
+Action: print the text string on serial console
+Return Type: void
+6. pinMode(pinNumber, STATE): where STATE is HIGH or LOW
+Action: set the pin behaviour as input or output
+Return Type: void
+
+---------------------------------------------------------------------------------------------------------------------
+
+Arduino Program 
+
+int relay=6;
+void setup()
+{
+ Serial.begin(9600);
+ Serial.println("Device Started");
+ pinMode(relay,OUTPUT);
+}
+void loop()
+{
+digitalWrite(relay,HIGH);
+delay(3000);
+digitalWrite(relay,LOW);
+delay(3000);
+}
