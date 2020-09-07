@@ -1,0 +1,42 @@
+Accelerometer Sensor (MMA845X)
+
+MMA845X (3 DOF ACCELEROMETER)
+It uses I2C Protocol for sending data.
+--------------------------------------------------------------------------------------------------------
+
+SDA=A4 AND SCL=A5
+
+Arduino Program
+
+#include "Wire.h"
+#include "MMA845XQ.h"
+// If SA0 on MMA845XQ is connected to GND (as on Akafuino L)
+MMA845XQ accel;
+// If SA0 on MMA845XQ is connected to VCC or floating
+//MMA845XQ accel(0x1D);
+void setup() {
+ Serial.begin(9600);
+ Wire.begin();
+ accel.begin(false, 2);
+}
+uint8_t rdata;
+uint8_t i;
+int x, x1, y, y1, z, z1;
+uint8_t stat;
+String stringOutput;
+void loop() {
+ accel.update();
+ Serial.println("X,\tY,\tZ,\tRho,\tPhi,\tTheta");
+ Serial.print(accel.getX());
+ Serial.print(" , ");
+ Serial.print(accel.getY());
+ Serial.print(", ");
+ Serial.print(accel.getZ());
+ Serial.print(", ");
+ Serial.print(accel.getRho());
+ Serial.print(", ");
+ Serial.print(accel.getPhi());
+ Serial.print(", ");
+ Serial.print(accel.getTheta());
+ Serial.println(); delay(500);
+}
