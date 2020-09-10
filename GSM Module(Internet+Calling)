@@ -1,0 +1,124 @@
+GSM MODULE(SIM-900A)
+
+SIM900A Modem is built with Dual Band GSM/GPRS based SIM900A modem
+from SIMCOM. It works on frequencies 900/ 1800 MHz SIM900A can search these two bands
+automatically. The frequency bands can also be set by AT Commands. The baud rate is configurable from
+1200-115200 through AT command. The GSM/GPRS Modem is having internal TCP/IP stack to enable
+you to connect with internet via GPRS. SIM900A is an ultra-compact and reliable wireless module. This is
+a complete GSM/GPRS module in a SMT type and designed with a very powerful single-chip processor
+integrating AMR926EJ-S core, allowing you to benefit from small dimensions and cost-effective solutions
+
+Circuit Connections:
+Connect GSM tx to Pin 3
+Connect GSM rx to Pin 2
+Connect GSM GND to GND
+--------------------------------------------------------------------------------------------------------
+
+Functions Used from Arduino Library:
+
+1. SoftwareSerial(txpin,rxpin):
+Use to make a custom serial connection (software based)
+2. delay (milliseconds):
+Action: pauses the execution of the program for specified time
+Return Type: void
+3. Serial.begin(baudRate):
+Action: initiate the serial connection
+Return Type: void
+4. Serial.println(text_String):
+Action: print the text string on next line of serial console
+Return Type: void
+--------------------------------------------------------------------------------------------------------
+
+Arduino Program 
+
+#include <SoftwareSerial.h>
+SoftwareSerial mySerial(3, 2);
+char msg;
+char call;
+void setup()
+{
+ mySerial.begin(9600); // Setting the baud rate of GSM Module
+ mySerial.println("AT");
+ Serial.begin(9600); // Setting the baud rate of Serial Monitor (Arduino)
+ Serial.println("GSM SIM900A BEGIN");
+ Serial.println("Enter character for control option:");
+ Serial.println("h : to disconnect a call");
+ Serial.println("i : to receive a call");
+ Serial.println("s : to send message");
+ Serial.println("c : to make a call");
+ Serial.println("e : to redial");
+ Serial.println();
+ delay(100);
+}
+void loop()
+{
+ if (Serial.available()>0)
+ switch(Serial.read())
+ {
+ case 's':
+ SendMessage();
+ break;
+ case 'c':
+ MakeCall();
+ break;
+ case 'h':
+ HangupCall();
+ break;
+ case 'e':
+ RedialCall();
+ break;
+ case 'i':
+ ReceiveCall();
+ break;
+ }
+ if (mySerial.available()>0)
+ Serial.write(mySerial.read());
+}
+void SendMessage()
+{
+ mySerial.println("AT+CMGF=1"); //Sets the GSM Module in Text Mode
+ delay(1000); // Delay of 1000 milli seconds or 1 second
+ mySerial.println("AT+CMGS=\"+917007694145\"\r"); // Replace x with mobile number
+ delay(1000);
+ mySerial.println("sim900a sms");// The SMS text you want to send
+ delay(100);
+ mySerial.println((char)26);// ASCII code of CTRL+Z
+ delay(1000);
+}
+void ReceiveMessage()
+{
+ mySerial.println("AT+CNMI=2,2,0,0,0"); // AT Command to recieve a live SMS
+ delay(1000);
+ if (mySerial.available()>0)
+ {
+ msg=mySerial.read();
+ Serial.print(msg);
+ }
+}
+void MakeCall()
+{
+ mySerial.println("ATD+917007694145;"); // ATDxxxxxxxxxx; -- watch out here for semicolon at the end!!
+ Serial.println("Calling "); // print response over serial port
+ delay(1000);
+}
+void HangupCall()
+{
+ mySerial.println("ATH");
+ Serial.println("Hangup Call");
+ delay(1000);
+}
+void ReceiveCall()
+{
+ mySerial.println("ATA");
+ delay(1000);
+ {
+ call=mySerial.read();
+ Serial.print(call);
+ }
+}
+void RedialCall()
+{
+ mySerial.println("ATDL");
+ Serial.println("Redialing");
+ delay(1000);
+}
