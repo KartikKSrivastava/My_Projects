@@ -1,0 +1,170 @@
+Thermal printer is the readily available and cost effective solution to print small
+bills or receipts. This easy to integrate solution is available everywhere. The
+printer uses thermochromic paper, a special type of paper which transforms into black color when it is
+exposed to a certain amount of heat. Thermal printer uses a special heating process to print on this paper.
+The printer head is heated in a special electrical to maintain a certain temperature. When the thermal paper
+passes through its head, its thermal coating turns into black where the head is heated.
+--------------------------------------------------------------------------------------------------------
+
+Circuit Diagram:
+
+Connect YELLOW wire labelled as RX on printer to digital pin 6 (Arduino transmit)
+Connect GREEN wire labelled as TX on printer to digital pin 5 (Arduino receive)
+Connect BLUE wire labelled as DTR on printer to digital pin 7 (Arduino DTR)
+
+--------------------------------------------------------------------------------------------------------
+
+Functions Used from Arduino Library:
+
+1. digitalWrite(pin_number,state):
+Action: puts a pin on high or low as state of the pin.
+Return Type: void
+2. delay (milliseconds):
+Action: pauses the execution of the program for specified time
+Return Type: void
+3. SoftwareSerial
+Class used for declaring software serial connections
+4. Serial.println(text_String):
+Action: print the text string on next line of serial console
+Return Type: void
+5. Serial.print(text_String):
+Action: print the text string on serial console
+Return Type: void
+6. pinMode(pinNumber, STATE): where STATE is HIGH or LOW
+Action: set the pin behaviour as input or output
+Return Type: void
+-----------------------------------------------------------------------------------------------------
+Program 1
+
+#include "Adafruit_Thermal.h"
+#include "SoftwareSerial.h"
+#define TX_PIN 6 // Arduino transmit YELLOW WIRE labeled RX on printer
+#define RX_PIN 5 // Arduino receive GREEN WIRE labeled TX on printer
+#define dtr 7
+SoftwareSerial mySerial(RX_PIN, TX_PIN); // Declare SoftwareSerial obj first
+Adafruit_Thermal printer(&mySerial,dtr); // Pass addr to printer constructor
+void setup() {
+ mySerial.begin(9600); // Initialize SoftwareSerial
+ printer.begin();
+ printer.justify('C');
+ printer.println("STUDENT ORGANIZATION\n");
+ printer.boldOn();
+ printer.justify('C');
+ printer.println("MEGAMINDS\n");
+ printer.boldOff();
+ printer.justify('C');
+ printer.println("Presents\n");
+ printer.justify('C');
+ printer.setSize('L'); // Set type size, accepts 'S', 'M', 'L'
+ printer.println("AUTOMATEANYTHING");
+ printer.boldOn();
+ printer.setSize('L');
+ printer.println("30 Day Workshop\n");
+ printer.boldOff();
+ printer.justify('C');
+ printer.setSize('S');
+ printer.println("*** Register Now ***");
+ printer.justify('C');
+ printer.print("DATE:24/04/2019\t");
+ printer.write(10);
+ printer.write(10);
+ printer.write(10);
+}
+void loop() {
+}
+
+
+Arduino Program 2 
+
+#include "Adafruit_Thermal.h"
+#include "SoftwareSerial.h"
+#define TX_PIN 6
+#define RX_PIN 5
+#define DTR 7
+SoftwareSerial mySerial(RX_PIN, TX_PIN);
+Adafruit_Thermal printer(&mySerial,DTR);
+void setup() {
+ mySerial.begin(9600);
+ printer.begin();
+ printer.justify('C');
+ printer.boldOn();
+ printer.println(F("BARCODE EXAMPLES\n"));
+ printer.boldOff();
+ printer.justify('L');
+ printer.print(F("UPC-A:"));
+ printer.printBarcode("123456789012", UPC_A);
+ printer.print(F("EAN-13:"));
+ printer.printBarcode("1234567890123", EAN13);
+ printer.print(F("EAN-8:"));
+ printer.printBarcode("12345678", EAN8);
+ printer.print(F("CODE 39:"));
+ printer.printBarcode("MEGAMINDS", CODE39);
+ printer.print(F("ITF:"));
+ printer.printBarcode("1234567890", ITF);
+ printer.print(F("CODABAR:"));
+ printer.printBarcode("1234567890", CODABAR);
+ printer.print(F("CODE 93:"));
+ printer.printBarcode("MEGAMINDS", CODE93);
+ printer.print(F("CODE128:"));
+ printer.printBarcode("MEGAMINDS", CODE128);
+ printer.feed(2);
+ printer.setDefault();}
+void loop() {
+}
+
+
+
+Arduino Program 3
+
+#include "Adafruit_Thermal.h"
+#include "SoftwareSerial.h"
+#define TX_PIN 6 
+#define RX_PIN 5
+SoftwareSerial mySerial(RX_PIN, TX_PIN);
+Adafruit_Thermal printer(&mySerial,7);
+void setup() {
+ mySerial.begin(9600);
+printer.begin();
+ printer.inverseOn();
+ printer.println(F("Inverse ON"));
+ printer.inverseOff();
+ printer.doubleHeightOn();
+ printer.println(F("Double Height ON"));
+ printer.doubleHeightOff();
+ printer.justify('R');
+ printer.println(F("Right justified"));
+ printer.justify('C');
+ printer.println(F("Center justified"));
+ printer.justify('L');
+ printer.println(F("Left justified"));
+ printer.boldOn();
+ printer.println(F("Bold text"));
+ printer.boldOff();
+ printer.underlineOn();
+ printer.println(F("Underlined text"));
+ printer.underlineOff();
+ printer.setSize('L');
+printer.println(F("Large"));
+ printer.setSize('M');
+ printer.println(F("Medium"));
+ printer.setSize('S');
+ printer.println(F("Small"));
+ printer.justify('C');
+ printer.println(F("normal\nline\nspacing"));
+ printer.setLineHeight(50);
+ printer.println(F("Taller\nline\nspacing"));
+ printer.setLineHeight();
+ printer.justify('L');
+ printer.printBarcode("MEGAMINDS", CODE39);
+ printer.setBarcodeHeight(100);
+ printer.printBarcode("123456789123", UPC_A);
+ printer.println(F("MEGAMINDS!"));
+ printer.feed(2);
+ printer.sleep();
+ delay(3000);
+ printer.wake();
+ printer.setDefault();
+}
+void loop() {
+}
+
