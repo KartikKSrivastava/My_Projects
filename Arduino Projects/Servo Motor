@@ -1,0 +1,57 @@
+A servo motor is an electrical device which can push or rotate an object with
+great precision. If you want to rotate and object at some specific angles or distance, then you use servo
+motor. It is just made up of simple motor which run through servo mechanism.
+
+---------------------------------------------------------------------------------------------------------
+
+Program 1
+
+#include <Servo.h>
+Servo myservo;
+int value;
+double angle;
+void setup()
+{
+ Serial.begin(9600);
+ myservo.attach(9);
+}
+void loop()
+{
+ value = analogRead(A0);
+ angle = map(value, 0, 1023, 0, 180);
+ Serial.println(angle);
+ myservo.write(angle);
+ delay(15);
+}
+
+
+
+Program 2
+
+#include <Servo.h> 
+int posicao = 0;
+Servo servo;
+#define bt1 2
+#define bt2 3 
+void setup()
+{
+ Serial.begin(9600);
+ servo.attach(7);
+ pinMode(bt1, INPUT);
+ pinMode(bt2, INPUT);
+}
+void loop()
+{
+ Serial.println(digitalRead(bt1));
+ Serial.println(digitalRead(bt2));
+ if(digitalRead(bt1) == HIGH && posicao <=180){
+ posicao++;
+ servo.write(posicao);
+ delay(5);
+ }
+ if(digitalRead(bt2) == HIGH && posicao >=0){
+ posicao--;
+ servo.write(posicao);
+ delay(5);
+ }
+}
