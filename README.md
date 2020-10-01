@@ -9,8 +9,8 @@ Kartik K Srivastava 😇 <br>
 (Lets Change World Together!) 
 
 # Projects
->Arduino
->NASA Citizen Science Project (IASC)
->Alexa Voice Assistant
->Unity
->GIMP
+>Arduino                                 <br>
+>NASA Citizen Science Project (IASC)     <br>
+>Alexa Voice Assistant                   <br>
+>Unity                                   <br>
+>GIMP                                    <br>
