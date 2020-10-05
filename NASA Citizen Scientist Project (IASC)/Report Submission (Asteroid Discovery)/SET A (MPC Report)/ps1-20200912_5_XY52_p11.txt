@@ -1,0 +1,14 @@
+COD F51
+OBS J. Bulger, T. Lowe, A. Schultz, M. Willman
+MEA Kartik Kumar Srivastava & Umang Srivastava (Lovely Professional University, India) 
+TEL 1.8-m f/4.4 Ritchey-Chretien + CCD
+ACK MPCReport file updated 2020.10.03 22:27:00
+NET PPMXL
+
+Image Set ps1-20200912_5_XY52_p11
+
+     KUA002   C2020 09 12.50557500 53 06.257-02 43 31.83         21.1 R      F51
+     KUA002   C2020 09 12.52015600 53 05.379-02 43 28.67         21.6 R      F51
+     KUA002   C2020 09 12.53474100 53 04.499-02 43 25.48         21.5 R      F51
+     KUA002   C2020 09 12.54927800 53 03.604-02 43 22.44         21.8 R      F51
+----- end -----
