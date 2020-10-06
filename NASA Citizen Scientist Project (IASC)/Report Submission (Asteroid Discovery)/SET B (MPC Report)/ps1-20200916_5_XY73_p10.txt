@@ -1,0 +1,12 @@
+COD F51
+OBS J. Bulger, T. Lowe, A. Schultz, M. Willman
+MEA Kartik Kumar Srivastava & Umang Srivastava (Lovely Professional University, India)
+TEL 1.8-m f/4.4 Ritchey-Chretien + CCD
+ACK MPCReport file updated 2020.10.03 20:41:12
+NET PPMXL
+
+Image Set ps1-20200916_5_XY73_p10
+
+    "No moving Objects Detected"
+
+----- end -----

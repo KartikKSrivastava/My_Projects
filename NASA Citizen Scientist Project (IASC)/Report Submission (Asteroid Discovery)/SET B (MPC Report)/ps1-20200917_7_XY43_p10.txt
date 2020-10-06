@@ -1,0 +1,12 @@
+COD F51
+OBS J. Bulger, T. Lowe, A. Schultz, M. Willman
+MEA T. Vorobjov, PS1 Science Consortium
+TEL 1.8-m f/4.4 Ritchey-Chretien + CCD
+ACK MPCReport file updated 2020.10.05 22:39:16
+NET PPMXL
+
+Image Set ps1-20200917_7_XY43_p10
+     KUA0011  C2020 09 17.43348601 40 11.650+18 55 02.65         20.3 R      F51
+     KUA0011  C2020 09 17.44769801 40 11.316+18 54 57.56         19.6 R      F51
+
+----- end -----
