@@ -4,13 +4,15 @@ The International Astronomical Search Collaboration (IASC) is a citizen science 
 
 Team Name: **Lovely Professional University**<br>
 Team Lead  : **Kartik Kumar Srivastava** | (kartiksrivastava.official@gmail.com) <br>
-Team 2020 <br>
-Team Members: <br> <br>
+>Team 2020 <br>
+>Team Members: <br> <br>
 >**Kartik Kumar Srivastava**<br>
 >**Umang Srivastava** <br> <br>
+
 Team 2021 <br>
 Team Members: <br> <br>
-**>Kartik Kumar Srivastava<br>
+
+>**Kartik Kumar Srivastava<br>
 >Chirag Monga<br>
 >Lekhana Mikkilineni<br>
 >Lakshmi Sindhu<br>
